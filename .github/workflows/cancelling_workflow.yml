@@ -1,19 +1,22 @@
+name: Long Running Job
+
 on:
   push:
     branches:
-    - main 
+      - main
   concurrency:
     group: ${{ github.ref }}
     cancel-in-progress: true
+
 jobs:
   long_running_file:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: long running file..
+    - name: Run long running task
       run: |
         sleep 120
-        echo "it will run for 2 min"
+        echo "It will run for 2 minutes"
