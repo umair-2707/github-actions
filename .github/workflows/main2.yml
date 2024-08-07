@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  long running file:
+  long_running_file:
     runs-on: ubuntu-latest
     
     steps:
@@ -15,3 +15,5 @@ jobs:
       run: |
         sleep 120
         echo "it will run for 2 min"
+
+
