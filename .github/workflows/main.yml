@@ -1,10 +1,9 @@
 name: Run Python Script
 
 on:
-  # push:
+  schedule:
+    - cron: '14 7 * * *'
   workflow_dispatch:
-    # branches:
-    #   - main  # or any branch you want to trigger the action
 
 jobs:
   run_python_script:
