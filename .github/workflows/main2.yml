@@ -1,11 +1,11 @@
-name: Run Python Script
+name: pull request
 
 on:
   pull_request:
     branches:
-    - master
-    types:
-    - opened
+      - master
+      types:
+        - opened
 
 jobs:
   run_python_script:
