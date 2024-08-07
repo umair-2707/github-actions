@@ -1,4 +1,4 @@
-name: Run Python Scripts
+name: with two jobs
 
 on:
   workflow_dispatch:
