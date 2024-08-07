@@ -1,11 +1,7 @@
-name: pull request
+name: manually running
 
 on:
-  pull_request:
-    branches:
-      - main
-    types:
-      - synchronize
+  workflow_dispatch:
 
 jobs:
   pull_request_based:
@@ -15,6 +11,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Notification for synchronize of PR..
+    - name: long running file..
+      sleep 120
       run: |
-        echo "Some of the pull requests have been synchronized"
+        echo "it will run for 2 min"
