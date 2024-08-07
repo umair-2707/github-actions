@@ -1,0 +1,19 @@
+on:
+  push:
+    branches:
+    - main 
+  concurrency:
+    group: ${{ github.ref }}
+    cancel-in-progress: true
+jobs:
+  long_running_file:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: long running file..
+      run: |
+        sleep 120
+        echo "it will run for 2 min"
