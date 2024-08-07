@@ -15,12 +15,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x' 
-
-
-
-    - name: Run Python script
-      run: python demo.py
+    - name: Notification for creation of PR..
+      run: |
+        echo "A new pull request has been created or opend"
