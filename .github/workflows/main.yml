@@ -1,9 +1,9 @@
-name: Run Python Scripts
+name: branch base triger
 
 on:
   push:
     branches:
-      - main
+      - test
     path:
       - demo.py 
 jobs:
