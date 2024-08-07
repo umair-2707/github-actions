@@ -5,7 +5,7 @@ on:
     branches:
       - main
     types:
-      - reopened
+      - closed
 
 jobs:
   run_python_script:
@@ -17,4 +17,4 @@ jobs:
 
     - name: Notification for creation of PR..
       run: |
-        echo "A new pull request has been created or opend"
+        echo "Some of the pull requests have been closed"
