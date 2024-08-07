@@ -5,10 +5,10 @@ on:
     branches:
       - main
     types:
-      - closed
+      - reopened
 
 jobs:
-  run_python_script:
+  pull_request_based:
     runs-on: ubuntu-latest
     
     steps:
