@@ -1,0 +1,34 @@
+name: Run Python Scripts
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job1_run_demo:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Run demo.py
+      run: python demo.py
+
+  job2_run_demo2:
+    needs: job1_run_demo
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Run demo2.py
+      run: python demo2.py
