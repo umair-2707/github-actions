@@ -17,4 +17,4 @@ jobs:
 
     - name: Notification for creation of PR..
       run: |
-        echo "Some of the pull requests have been closed"
+        echo "Some of the pull requests have been reopened"
