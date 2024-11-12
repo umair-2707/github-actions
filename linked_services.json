@@ -1,0 +1,1196 @@
+﻿{
+    "value":  [
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/sfmtestwusedwsyn01-WorkspaceDefaultStorage",
+                      "name":  "sfmtestwusedwsyn01-WorkspaceDefaultStorage",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "1e00d6ca-0000-0700-0000-61084b570000",
+                      "properties":  {
+                                         "typeProperties":  {
+                                                                "url":  "https://sfmtestedwwusadls01.dfs.core.windows.net"
+                                                            },
+                                         "type":  "AzureBlobFS",
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/sfmtestwusedwsyn01-WorkspaceDefaultSqlServer",
+                      "name":  "sfmtestwusedwsyn01-WorkspaceDefaultSqlServer",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "1e00dbca-0000-0700-0000-61084b590000",
+                      "properties":  {
+                                         "typeProperties":  {
+                                                                "connectionString":  "Data Source=tcp:sfmtestwusedwsyn01.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+                                                            },
+                                         "parameters":  {
+                                                            "DBName":  {
+                                                                           "type":  "String"
+                                                                       }
+                                                        },
+                                         "type":  "AzureSqlDW",
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureKeyVault",
+                      "name":  "AzureKeyVault",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "1e00a9d7-0000-0700-0000-61084cb00000",
+                      "properties":  {
+                                         "type":  "AzureKeyVault",
+                                         "annotations":  [
+
+                                                         ],
+                                         "typeProperties":  {
+                                                                "baseUrl":  "https://sfm-test-wus-edw-kv-01.vault.azure.net/"
+                                                            }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureSqlDW",
+                      "name":  "AzureSqlDW",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "1e002bd8-0000-0700-0000-61084cbb0000",
+                      "properties":  {
+                                         "type":  "AzureSqlDatabase",
+                                         "connectVia":  {
+                                                            "type":  "IntegrationRuntimeReference",
+                                                            "referenceName":  "EDWDFintegrationRuntime"
+                                                        },
+                                         "annotations":  [
+
+                                                         ],
+                                         "typeProperties":  {
+                                                                "connectionString":  {
+                                                                                         "type":  "AzureKeyVaultSecret",
+                                                                                         "store":  {
+                                                                                                       "referenceName":  "AzureKeyVault",
+                                                                                                       "type":  "LinkedServiceReference"
+                                                                                                   },
+                                                                                         "secretName":  "DateWarehouseConnectionString"
+                                                                                     }
+                                                            }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/COPR",
+                      "name":  "COPR",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "33007195-0000-0700-0000-649be1d00000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "SqlServer",
+                                         "typeProperties":  {
+                                                                "connectionString":  "Integrated Security=True;Data Source=SRV-DB-QA-09\\COPR;Initial Catalog=COPR",
+                                                                "userName":  "SPROUTS\\svc-qa-syn-elt-ro",
+                                                                "password":  {
+                                                                                 "type":  "AzureKeyVaultSecret",
+                                                                                 "store":  {
+                                                                                               "referenceName":  "AzureKeyVault",
+                                                                                               "type":  "LinkedServiceReference"
+                                                                                           },
+                                                                                 "secretName":  "EDW-Synapse-ELT-ServiceAccount"
+                                                                             }
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "EDWDFintegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/SmiStageSqlDatabase",
+                      "name":  "SmiStageSqlDatabase",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "34024b07-0000-0700-0000-63ec80f30000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "SqlServer",
+                                         "typeProperties":  {
+                                                                "connectionString":  {
+                                                                                         "type":  "AzureKeyVaultSecret",
+                                                                                         "store":  {
+                                                                                                       "referenceName":  "AzureKeyVault",
+                                                                                                       "type":  "LinkedServiceReference"
+                                                                                                   },
+                                                                                         "secretName":  "StageConnectionString"
+                                                                                     }
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureSynapseAnalytics_Prod",
+                      "name":  "AzureSynapseAnalytics_Prod",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "ae012362-0000-0700-0000-61891fa50000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureSqlDW",
+                                         "typeProperties":  {
+                                                                "connectionString":  "integrated security=False;encrypt=True;connection timeout=30;data source=sfmprodwusedwsyn01.sql.azuresynapse.net;initial catalog=sfmprodwusedwpool01;user id=loader",
+                                                                "encryptedCredential":  "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VANzFDRDFCMEYtRUY3Mi00RTQxLTk0NjYtRjg3NzkyQTBBN0MwXzQ5NTFiMGRkLTQ0YWEtNGNmNS1iZTg2LWRlNjEyNzg5ZTk4NyINCn0="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/SecurityExcel",
+                      "name":  "SecurityExcel",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "02016ddf-0000-0700-0000-61c31a180000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobStorage",
+                                         "typeProperties":  {
+                                                                "connectionString":  {
+                                                                                         "type":  "AzureKeyVaultSecret",
+                                                                                         "store":  {
+                                                                                                       "referenceName":  "AzureKeyVault",
+                                                                                                       "type":  "LinkedServiceReference"
+                                                                                                   },
+                                                                                         "secretName":  "DemoFlatConnectionString"
+                                                                                     }
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/SqlServerTest",
+                      "name":  "SqlServerTest",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "190133fe-0000-0700-0000-61c451de0000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "SqlServer",
+                                         "typeProperties":  {
+                                                                "connectionString":  "integrated security=False;data source=sfmtestwusedwsyn01.sql.azuresynapse.net;initial catalog=sfmtestwusedwsyndw01;user id=v-njain@sprouts.com",
+                                                                "encryptedCredential":  "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VANzFDRDFCMEYtRUY3Mi00RTQxLTk0NjYtRjg3NzkyQTBBN0MwXzk2ZGEzYjQ0LTkwMjQtNGI2Yi05NTBjLTA2ZGYxYTQ2MjViZSINCn0="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/FourKitesAnalyticsAPI",
+                      "name":  "FourKitesAnalyticsAPI",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "9a045fa7-0000-0700-0000-6320a0a30000",
+                      "properties":  {
+                                         "parameters":  {
+                                                            "terminated_date":  {
+                                                                                    "type":  "string"
+                                                                                },
+                                                            "offset":  {
+                                                                           "type":  "int"
+                                                                       },
+                                                            "limit":  {
+                                                                          "type":  "int",
+                                                                          "defaultValue":  100
+                                                                      }
+                                                        },
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "RestService",
+                                         "typeProperties":  {
+                                                                "url":  "https://insights-api.fourkites.com/api/v1/loads",
+                                                                "enableServerCertificateValidation":  true,
+                                                                "authenticationType":  "Basic",
+                                                                "userName":  "charlesgosman@sprouts.com",
+                                                                "encryptedCredential":  "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VANzFDRDFCMEYtRUY3Mi00RTQxLTk0NjYtRjg3NzkyQTBBN0MwXzA1YTBmNDEzLTU5MTMtNGVlZi1iNTRlLWYzNGJhZjU0ODEwZCINCn0="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/pbiworkspaces",
+                      "name":  "pbiworkspaces",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "0000c845-0000-0700-0000-64ca2e4b0000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobStorage",
+                                         "typeProperties":  {
+                                                                "connectionString":  "DefaultEndpointsProtocol=https;AccountName=sfmtestedwwusadls01;EndpointSuffix=core.windows.net;",
+                                                                "encryptedCredential":  "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VANzFDRDFCMEYtRUY3Mi00RTQxLTk0NjYtRjg3NzkyQTBBN0MwXzgwYTZlNzVhLTNlMTktNDQyNC05ZjQxLTc5YmY1ODFlYjVjZCINCn0="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/MercuryGate",
+                      "name":  "MercuryGate",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "2a0158be-0000-0700-0000-63e3cc240000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobStorage",
+                                         "typeProperties":  {
+                                                                "connectionString":  "DefaultEndpointsProtocol=https;AccountName=sfmtestedwwusadls01;EndpointSuffix=core.windows.net;",
+                                                                "encryptedCredential":  "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VANzFDRDFCMEYtRUY3Mi00RTQxLTk0NjYtRjg3NzkyQTBBN0MwXzczMTczZTc1LTFmYmMtNDBkZi04Nzk3LTg2MDAzZmFlMjQ5ZSINCn0="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/TestDatabricks",
+                      "name":  "TestDatabricks",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "e00146fc-0000-0700-0000-63e9fb490000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureDatabricks",
+                                         "typeProperties":  {
+                                                                "domain":  "https://adb-8684083283437456.16.azuredatabricks.net",
+                                                                "existingClusterId":  "0825-202636-2h9v66ha",
+                                                                "encryptedCredential":  "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VANzFDRDFCMEYtRUY3Mi00RTQxLTk0NjYtRjg3NzkyQTBBN0MwXzcwZTg0ZjM3LTY4OWUtNDZkYS1iZWZkLTc0NWQwZDBmYzNhNiINCn0="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureDatabricksForDataLake",
+                      "name":  "AzureDatabricksForDataLake",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "9b009e10-0000-0700-0000-66baf5df0000",
+                      "properties":  {
+                                         "parameters":  {
+                                                            "Cluster":  {
+                                                                            "type":  "string",
+                                                                            "defaultValue":  "0825-202636-2h9v66ha"
+                                                                        }
+                                                        },
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureDatabricks",
+                                         "typeProperties":  {
+                                                                "domain":  "https://adb-8684083283437456.16.azuredatabricks.net",
+                                                                "accessToken":  {
+                                                                                    "type":  "AzureKeyVaultSecret",
+                                                                                    "store":  {
+                                                                                                  "referenceName":  "AzureKeyVault",
+                                                                                                  "type":  "LinkedServiceReference"
+                                                                                              },
+                                                                                    "secretName":  "Databricks-Notebooks-SynapsePipelines"
+                                                                                },
+                                                                "existingClusterId":  "@linkedService().Cluster"
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/GoogleAdWords1",
+                      "name":  "GoogleAdWords1",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "01009aba-0000-0700-0000-649217ba0000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "GoogleAdWords",
+                                         "typeProperties":  {
+                                                                "connectionProperties":  {
+                                                                                             "clientCustomerID":  "8994913650",
+                                                                                             "loginCustomerID":  "9345900935",
+                                                                                             "authenticationType":  "ServiceAuthentication",
+                                                                                             "email":  "narendrabhatewara@sprouts.com",
+                                                                                             "keyFilePath":  "I:\\Integrations\\KPI-Dashboard\\kpi-dashboard-2023-56125ee698a1.json",
+                                                                                             "useSystemTrustStore":  false,
+                                                                                             "encryptedCredential":  "eyJDcmVkZW50aWFsSWQiOiI3OWZlZDM1MC02NDA1LTQwNDQtYWZhNy1iZGFmYTdhNDc4NzIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+                                                                                         }
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "EDWDFintegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/ServerLess_ConfigLog",
+                      "name":  "ServerLess_ConfigLog",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "55038a23-0000-0700-0000-645b3cf70000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureSqlDW",
+                                         "typeProperties":  {
+                                                                "connectionString":  "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=sfmtestwusedwsyn01-ondemand.sql.azuresynapse.net;Initial Catalog=configlogs"
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/PowerBIAnalysis",
+                      "name":  "PowerBIAnalysis",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "8503de79-0000-0700-0000-645c82910000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "HttpServer",
+                                         "typeProperties":  {
+                                                                "url":  "https://api.powerbi.com/",
+                                                                "enableServerCertificateValidation":  true,
+                                                                "authenticationType":  "Basic",
+                                                                "userName":  "DemoDeltaTable",
+                                                                "encryptedCredential":  "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VANzFDRDFCMEYtRUY3Mi00RTQxLTk0NjYtRjg3NzkyQTBBN0MwX2IzZTZjOWU2LTE0ZTEtNDA5NC05ZmQ1LThjYWE2YmY4MTU2YSINCn0="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/OnPrem_SQLDynamic",
+                      "name":  "OnPrem_SQLDynamic",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "1202c6f6-0000-0700-0000-649144910000",
+                      "properties":  {
+                                         "parameters":  {
+                                                            "ServerName":  {
+                                                                               "type":  "string"
+                                                                           },
+                                                            "DatabaseName":  {
+                                                                                 "type":  "string"
+                                                                             },
+                                                            "AccountName":  {
+                                                                                "type":  "string"
+                                                                            },
+                                                            "SecretName":  {
+                                                                               "type":  "string"
+                                                                           }
+                                                        },
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "SqlServer",
+                                         "typeProperties":  {
+                                                                "connectionString":  "Integrated Security=True;Data Source=@{linkedService().ServerName};Initial Catalog=@{linkedService().DatabaseName};ApplicationIntent=ReadOnly",
+                                                                "userName":  "@{linkedService().AccountName}",
+                                                                "password":  {
+                                                                                 "type":  "AzureKeyVaultSecret",
+                                                                                 "store":  {
+                                                                                               "referenceName":  "AzureKeyVault",
+                                                                                               "type":  "LinkedServiceReference"
+                                                                                           },
+                                                                                 "secretName":  {
+                                                                                                    "value":  "@linkedService().SecretName",
+                                                                                                    "type":  "Expression"
+                                                                                                }
+                                                                             }
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "EDWDFintegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/ServerLessSQL",
+                      "name":  "ServerLessSQL",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "6b04b085-0000-0700-0000-64647a410000",
+                      "properties":  {
+                                         "parameters":  {
+                                                            "Database":  {
+                                                                             "type":  "string"
+                                                                         }
+                                                        },
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureSqlDW",
+                                         "typeProperties":  {
+                                                                "connectionString":  "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=sfmtestwusedwsyn01-ondemand.sql.azuresynapse.net;Initial Catalog=@{linkedService().Database}"
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/FileServer_Dynamic",
+                      "name":  "FileServer_Dynamic",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "f8008b9c-0000-0700-0000-6538b1140000",
+                      "properties":  {
+                                         "parameters":  {
+                                                            "AccountName":  {
+                                                                                "type":  "string"
+                                                                            },
+                                                            "SecretName":  {
+                                                                               "type":  "string"
+                                                                           },
+                                                            "SourceServerName":  {
+                                                                                     "type":  "string"
+                                                                                 }
+                                                        },
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "FileServer",
+                                         "typeProperties":  {
+                                                                "host":  "@{linkedService().SourceServerName}",
+                                                                "userId":  "@{linkedService().AccountName}",
+                                                                "password":  {
+                                                                                 "type":  "AzureKeyVaultSecret",
+                                                                                 "store":  {
+                                                                                               "referenceName":  "AzureKeyVault",
+                                                                                               "type":  "LinkedServiceReference"
+                                                                                           },
+                                                                                 "secretName":  {
+                                                                                                    "value":  "@linkedService().SecretName",
+                                                                                                    "type":  "Expression"
+                                                                                                }
+                                                                             }
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "EDWDFintegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/TestViantConnection",
+                      "name":  "TestViantConnection",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "0e02b6c2-0000-0700-0000-6556635b0000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "GoogleCloudStorage",
+                                         "typeProperties":  {
+                                                                "serviceUrl":  "https://storage.googleapis.com",
+                                                                "accessKeyId":  "GOOG1E3NF5ZHQ3OGOSLWOIC7ODSKTH5U3DRCQKOZGEOITZFIMW6KX6ZX7GWOW",
+                                                                "encryptedCredential":  "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VANzFDRDFCMEYtRUY3Mi00RTQxLTk0NjYtRjg3NzkyQTBBN0MwXzkyYzg4NGJmLTY4NDAtNDYxNC05NWZmLWNkN2UzMDY4ODc3ZiINCn0="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/GoogleCloudStorage1",
+                      "name":  "GoogleCloudStorage1",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "1a02ebbd-0000-0700-0000-6557a14a0000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "GoogleCloudStorage",
+                                         "typeProperties":  {
+                                                                "serviceUrl":  "https://storage.googleapis.com",
+                                                                "accessKeyId":  "GOOG1E3NF5ZHQ3OGOSLWOIC7ODSKTH5U3DRCQKOZGEOITZFIMW6KX6ZX7GWOW",
+                                                                "encryptedCredential":  "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VANzFDRDFCMEYtRUY3Mi00RTQxLTk0NjYtRjg3NzkyQTBBN0MwX2MyMWY1YmYzLWUxMzAtNGI2Mi1iYjc2LWM3MGQ5N2MwNjhiOSINCn0="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/GoogleCloudStorage_Viant",
+                      "name":  "GoogleCloudStorage_Viant",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "2e04fa9a-0000-0700-0000-65657bc40000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "GoogleCloudStorage",
+                                         "typeProperties":  {
+                                                                "serviceUrl":  "https://storage.googleapis.com",
+                                                                "accessKeyId":  "GOOG1E3NF5ZHQ3OGOSLWOIC7ODSKTH5U3DRCQKOZGEOITZFIMW6KX6ZX7GWOW",
+                                                                "secretAccessKey":  {
+                                                                                        "type":  "AzureKeyVaultSecret",
+                                                                                        "store":  {
+                                                                                                      "referenceName":  "AzureKeyVault",
+                                                                                                      "type":  "LinkedServiceReference"
+                                                                                                  },
+                                                                                        "secretName":  "Viant-LinkedService"
+                                                                                    }
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureDataLakeStorage1Test",
+                      "name":  "AzureDataLakeStorage1Test",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "aa029368-0000-0700-0000-65d596400000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobFS",
+                                         "typeProperties":  {
+                                                                "url":  "https://sfmtestedwwusadls01.dfs.core.windows.net/",
+                                                                "encryptedCredential":  "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VANzFDRDFCMEYtRUY3Mi00RTQxLTk0NjYtRjg3NzkyQTBBN0MwXzI5N2VhMTY0LTM0OWUtNDYzYS1iNWNmLThlYjJiMjJkMTk4YyINCn0="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureDataLakeStorage1TestActual",
+                      "name":  "AzureDataLakeStorage1TestActual",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "ab02ce5d-0000-0700-0000-65d5a52f0000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobFS",
+                                         "typeProperties":  {
+                                                                "url":  "https://sfmtestedwwusadls01.dfs.core.windows.net/",
+                                                                "encryptedCredential":  "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VANzFDRDFCMEYtRUY3Mi00RTQxLTk0NjYtRjg3NzkyQTBBN0MwX2U2MDUwOWIwLWRiYTMtNDUxZS1hYThhLTNiYTQ4YjVjNDYxYiINCn0="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureDataLakeStoragetest1",
+                      "name":  "AzureDataLakeStoragetest1",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "d1025753-0000-0700-0000-65d6e22b0000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobFS",
+                                         "typeProperties":  {
+                                                                "url":  "https://sfmtestedwwusadls01.dfs.core.windows.net/",
+                                                                "encryptedCredential":  "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VANzFDRDFCMEYtRUY3Mi00RTQxLTk0NjYtRjg3NzkyQTBBN0MwX2M5ZmVlNGFlLTFhYjItNGEwMy04ZDIwLTdjYzA4MTJiMWM0NyINCn0="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/Dynamic_ADLS",
+                      "name":  "Dynamic_ADLS",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "64008dec-0000-0700-0000-65fa84390000",
+                      "properties":  {
+                                         "parameters":  {
+                                                            "adlsURL":  {
+                                                                            "type":  "string",
+                                                                            "defaultValue":  "https://sfmprodwusedwadl01.dfs.core.windows.net/"
+                                                                        }
+                                                        },
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobFS",
+                                         "typeProperties":  {
+                                                                "url":  "@{linkedService().adlsURL}"
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureBlobStorage1",
+                      "name":  "AzureBlobStorage1",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "2b034659-0000-0700-0000-666bfe050000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobStorage",
+                                         "typeProperties":  {
+                                                                "sasUri":  "https://sfmtestedwwusadls01.blob.core.windows.net/datalake",
+                                                                "encryptedCredential":  "eyJDcmVkZW50aWFsSWQiOiIzMGM3ZTBhMS1jNzU1LTRiYWItOGIyNy03ZDE3M2MwZmJiOGEiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "EDWDFintegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureBlobStorage2",
+                      "name":  "AzureBlobStorage2",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "9902b780-0000-0700-0000-666917590000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobStorage",
+                                         "typeProperties":  {
+                                                                "sasUri":  "https://eu2sfmprdarchive.blob.core.windows.net/outbound",
+                                                                "encryptedCredential":  "eyJDcmVkZW50aWFsSWQiOiI2NGU0MDgyMS0yYzQ4LTQ0YWUtYjM4ZS02ZmRmYzdhZWU0NTUiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "EDWDFintegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureBlobStorage3",
+                      "name":  "AzureBlobStorage3",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "b9027553-0000-0700-0000-666975af0000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobStorage",
+                                         "typeProperties":  {
+                                                                "sasUri":  "https://eu2sfmprdarchive.blob.core.windows.net/outbound/",
+                                                                "encryptedCredential":  "eyJDcmVkZW50aWFsSWQiOiI5ZTMyZjNjNy1lN2JiLTQ2MWEtYjcxYy02YWMzNzUxNjZlNjMiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "EDWDFintegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureBlobStorage4",
+                      "name":  "AzureBlobStorage4",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "bb02b7d6-0000-0700-0000-66697f290000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobStorage",
+                                         "typeProperties":  {
+                                                                "sasUri":  "https://sfmtestedwwusadls01.blob.core.windows.net/datalake",
+                                                                "encryptedCredential":  "eyJDcmVkZW50aWFsSWQiOiI0ZDI2MThkMi0xMGFmLTRlYTQtYWYzMy02ZmM3ODYwZDU4NmMiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "EDWDFintegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureBlobStorage5",
+                      "name":  "AzureBlobStorage5",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "bd0261a3-0000-0700-0000-666986ba0000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobStorage",
+                                         "typeProperties":  {
+                                                                "sasUri":  "https://sfmtestedwwusadls01.blob.core.windows.net/datalake",
+                                                                "encryptedCredential":  "eyJDcmVkZW50aWFsSWQiOiI1MjJkMDFlNS0zZDFhLTQ4OTgtYTExMC1jZDljMmQxMjY3ZWQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "EDWDFintegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureBlobStorage6",
+                      "name":  "AzureBlobStorage6",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "be023400-0000-0700-0000-666988590000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobStorage",
+                                         "typeProperties":  {
+                                                                "sasUri":  "https://eu2sfmprdarchive.blob.core.windows.net/outbound",
+                                                                "encryptedCredential":  "eyJDcmVkZW50aWFsSWQiOiI4MDAwNTYyNy00YzNiLTRmNjktODMwYy1kYjA5ZWQ5NTY0ZmUiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "EDWDFintegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureBlobStorage7",
+                      "name":  "AzureBlobStorage7",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "be02576d-0000-0700-0000-66698a520000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobStorage",
+                                         "typeProperties":  {
+                                                                "sasUri":  "https://eu2sfmprdarchive.blob.core.windows.net/outbound",
+                                                                "encryptedCredential":  "eyJDcmVkZW50aWFsSWQiOiIxMTVlOWU1Yi1kZTU0LTQ3ZmYtOTYwMi0yNmZkODQ5NjgzODIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "EDWDFintegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureBlobStorage8",
+                      "name":  "AzureBlobStorage8",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "be02528c-0000-0700-0000-66698adb0000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobStorage",
+                                         "typeProperties":  {
+                                                                "connectionString":  "DefaultEndpointsProtocol=https;AccountName=sfmtestedwwusadls01;EndpointSuffix=core.windows.net;",
+                                                                "encryptedCredential":  "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VANzFDRDFCMEYtRUY3Mi00RTQxLTk0NjYtRjg3NzkyQTBBN0MwXzk5NmRiODE2LWM3ZDgtNGYxZS1iNDE1LTEyYTQ4YzMyYjJiYSINCn0="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureBlobStorage9",
+                      "name":  "AzureBlobStorage9",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "1401f066-0000-0700-0000-6662cb4d0000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobStorage",
+                                         "typeProperties":  {
+                                                                "sasUri":  "https://sfmtestedwwusadls01.blob.core.windows.net/",
+                                                                "encryptedCredential":  "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VANzFDRDFCMEYtRUY3Mi00RTQxLTk0NjYtRjg3NzkyQTBBN0MwXzNjMWVkMmZlLWVjYjEtNDIyMS05NWRhLWE4NzIzYmM3ZTU0NiINCn0="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureBlobStorage10",
+                      "name":  "AzureBlobStorage10",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "1401e69b-0000-0700-0000-6662cc860000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobStorage",
+                                         "typeProperties":  {
+                                                                "connectionString":  "DefaultEndpointsProtocol=https;AccountName=sfmtestedwwusadls01;EndpointSuffix=core.windows.net;",
+                                                                "encryptedCredential":  "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VANzFDRDFCMEYtRUY3Mi00RTQxLTk0NjYtRjg3NzkyQTBBN0MwX2Q1YzYzNDc5LTY4NGYtNDdmZi1iOWZhLTVkZDEyMGQ5NzQ0NSINCn0="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureBlobStorage11",
+                      "name":  "AzureBlobStorage11",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "14011fc0-0000-0700-0000-6662cd670000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobStorage",
+                                         "typeProperties":  {
+                                                                "connectionString":  "DefaultEndpointsProtocol=https;AccountName=sfmtestedwwusadls01;EndpointSuffix=core.windows.net;",
+                                                                "encryptedCredential":  "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VANzFDRDFCMEYtRUY3Mi00RTQxLTk0NjYtRjg3NzkyQTBBN0MwX2Y1MWRiZjJhLWFhNDMtNGQ1Mi04ZDFlLWM5M2U0OGU2ZDBiNiINCn0="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/BlobLinkedService",
+                      "name":  "BlobLinkedService",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "8f02e3f9-0000-0700-0000-66a86f1f0000",
+                      "properties":  {
+                                         "parameters":  {
+                                                            "Secret":  {
+                                                                           "type":  "string"
+                                                                       }
+                                                        },
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobStorage",
+                                         "typeProperties":  {
+                                                                "sasUri":  {
+                                                                               "type":  "AzureKeyVaultSecret",
+                                                                               "store":  {
+                                                                                             "referenceName":  "AzureKeyVault",
+                                                                                             "type":  "LinkedServiceReference"
+                                                                                         },
+                                                                               "secretName":  {
+                                                                                                  "value":  "@linkedService().Secret",
+                                                                                                  "type":  "Expression"
+                                                                                              }
+                                                                           }
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "EDWDFintegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureBlobStorage12",
+                      "name":  "AzureBlobStorage12",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "1d0140b7-0000-0700-0000-6662f7fe0000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobStorage",
+                                         "typeProperties":  {
+                                                                "connectionString":  "DefaultEndpointsProtocol=https;AccountName=sfmtestedwwusadls01;EndpointSuffix=core.windows.net;",
+                                                                "encryptedCredential":  "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VANzFDRDFCMEYtRUY3Mi00RTQxLTk0NjYtRjg3NzkyQTBBN0MwXzI2ZmJiNDE1LWQ2ODktNGQwMy04YjJmLWEyY2NmZWM0OTRjMCINCn0="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureBlobStorage13",
+                      "name":  "AzureBlobStorage13",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "c802f3f5-0000-0700-0000-6669bb2e0000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobStorage",
+                                         "typeProperties":  {
+                                                                "sasUri":  "https://eu2sfmprdarchive.blob.core.windows.net/outbound",
+                                                                "encryptedCredential":  "eyJDcmVkZW50aWFsSWQiOiJiNTEzZDlkOC05YTZmLTRkNzctYmM4NC04OGIxNTFkMWFmZTAiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "EDWDFintegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/OsaLinkedService",
+                      "name":  "OsaLinkedService",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "fd02a310-0000-0700-0000-666abdba0000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobStorage",
+                                         "typeProperties":  {
+                                                                "sasUri":  "https://eu2sfmprdarchive.blob.core.windows.net/outbound",
+                                                                "encryptedCredential":  "eyJDcmVkZW50aWFsSWQiOiJjODQ5OGRiZC0yZGRmLTQ2ODEtODBlNy01OGUzZWVlMjQwM2IiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "EDWDFintegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/OsaDumpLinkedservice",
+                      "name":  "OsaDumpLinkedservice",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "fe02313c-0000-0700-0000-666ac06e0000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobStorage",
+                                         "typeProperties":  {
+                                                                "connectionString":  "DefaultEndpointsProtocol=https;AccountName=sfmtestedwwusadls01;EndpointSuffix=core.windows.net;",
+                                                                "encryptedCredential":  "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VANzFDRDFCMEYtRUY3Mi00RTQxLTk0NjYtRjg3NzkyQTBBN0MwXzNhY2ExZDE5LTliY2UtNDYzNC04OGVmLTM2YmUxMjEyMTNkZCINCn0="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureDatabricksForSupplyChain",
+                      "name":  "AzureDatabricksForSupplyChain",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "7b007224-0000-0700-0000-667a868a0000",
+                      "properties":  {
+                                         "parameters":  {
+                                                            "Cluster":  {
+                                                                            "type":  "string",
+                                                                            "defaultValue":  "0620-070438-7533em4s"
+                                                                        }
+                                                        },
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureDatabricks",
+                                         "typeProperties":  {
+                                                                "domain":  "https://adb-8684083283437456.16.azuredatabricks.net",
+                                                                "existingClusterId":  "@linkedService().Cluster",
+                                                                "encryptedCredential":  "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VANzFDRDFCMEYtRUY3Mi00RTQxLTk0NjYtRjg3NzkyQTBBN0MwXzJkM2EwZTJmLTAzNmYtNDc0MS05ZTE4LTdlZTMyNmIxNDdmNiINCn0="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureBlobStorage14",
+                      "name":  "AzureBlobStorage14",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "7300c90f-0000-0700-0000-668d5b5e0000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobStorage",
+                                         "typeProperties":  {
+                                                                "connectionString":  "DefaultEndpointsProtocol=https;AccountName=sfmtestedwwusadls01;EndpointSuffix=core.windows.net;",
+                                                                "encryptedCredential":  "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VANzFDRDFCMEYtRUY3Mi00RTQxLTk0NjYtRjg3NzkyQTBBN0MwXzA3NzgwNTRlLWZkNmEtNGI5Ny04MTA0LTExNmQ1ZDc0OThhMiINCn0="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureBlobStorage15",
+                      "name":  "AzureBlobStorage15",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "7300b511-0000-0700-0000-668d5c3f0000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobStorage",
+                                         "typeProperties":  {
+                                                                "connectionString":  "DefaultEndpointsProtocol=https;AccountName=sfmtestedwwusadls01;EndpointSuffix=core.windows.net;",
+                                                                "encryptedCredential":  "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VANzFDRDFCMEYtRUY3Mi00RTQxLTk0NjYtRjg3NzkyQTBBN0MwXzlhOTU5Nzg0LTk2OGQtNGZmNy04YWE5LTI4NjNlM2I0OTkwYyINCn0="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureBlobStorage16",
+                      "name":  "AzureBlobStorage16",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "7300571d-0000-0700-0000-668d61a40000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureBlobStorage",
+                                         "typeProperties":  {
+                                                                "connectionString":  "DefaultEndpointsProtocol=https;AccountName=sfmtestedwwusadls01;EndpointSuffix=core.windows.net;",
+                                                                "encryptedCredential":  "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VANzFDRDFCMEYtRUY3Mi00RTQxLTk0NjYtRjg3NzkyQTBBN0MwXzQ4NTczMjMxLTU0YWYtNDAxOS05NDM3LWVhNWQ5MzAyNTE3ZiINCn0="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/AzureDatabricks",
+                      "name":  "AzureDatabricks",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "5c01f126-0000-0700-0000-66cc48760000",
+                      "properties":  {
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "AzureDatabricks",
+                                         "typeProperties":  {
+                                                                "domain":  "https://adb-1538086029361148.8.azuredatabricks.net",
+                                                                "existingClusterId":  "0730-203730-cz4ucbsj",
+                                                                "encryptedCredential":  "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VANzFDRDFCMEYtRUY3Mi00RTQxLTk0NjYtRjg3NzkyQTBBN0MwXzcxNWRmMGE0LWViMzctNDJiNS1iNDhkLTI5YTU5NzUxYmE0NSINCn0="
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "AutoResolveIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/FileServer_Dynamic_SC",
+                      "name":  "FileServer_Dynamic_SC",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "7e02797b-0000-0700-0000-66cea9650000",
+                      "properties":  {
+                                         "parameters":  {
+                                                            "AccountName":  {
+                                                                                "type":  "string"
+                                                                            },
+                                                            "SecretName":  {
+                                                                               "type":  "string"
+                                                                           },
+                                                            "SourceServerName":  {
+                                                                                     "type":  "string"
+                                                                                 }
+                                                        },
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "FileServer",
+                                         "typeProperties":  {
+                                                                "host":  "@{linkedService().SourceServerName}",
+                                                                "userId":  "@{linkedService().AccountName}",
+                                                                "password":  {
+                                                                                 "type":  "AzureKeyVaultSecret",
+                                                                                 "store":  {
+                                                                                               "referenceName":  "AzureKeyVault",
+                                                                                               "type":  "LinkedServiceReference"
+                                                                                           },
+                                                                                 "secretName":  {
+                                                                                                    "value":  "@linkedService().SecretName",
+                                                                                                    "type":  "Expression"
+                                                                                                }
+                                                                             }
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "EDWSCDFIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  },
+                  {
+                      "id":  "/subscriptions/fcc48cc1-ff87-4114-b720-3601b4f65a13/resourceGroups/SFM-Test-WUS-EDW-RG-01/providers/Microsoft.Synapse/workspaces/sfmtestwusedwsyn01/linkedservices/OnPrem_SQLDynamic_SC",
+                      "name":  "OnPrem_SQLDynamic_SC",
+                      "type":  "Microsoft.Synapse/workspaces/linkedservices",
+                      "etag":  "7e02287c-0000-0700-0000-66cea96b0000",
+                      "properties":  {
+                                         "parameters":  {
+                                                            "ServerName":  {
+                                                                               "type":  "string"
+                                                                           },
+                                                            "DatabaseName":  {
+                                                                                 "type":  "string"
+                                                                             },
+                                                            "AccountName":  {
+                                                                                "type":  "string"
+                                                                            },
+                                                            "SecretName":  {
+                                                                               "type":  "string"
+                                                                           }
+                                                        },
+                                         "annotations":  [
+
+                                                         ],
+                                         "type":  "SqlServer",
+                                         "typeProperties":  {
+                                                                "connectionString":  "Integrated Security=True;Data Source=@{linkedService().ServerName};Initial Catalog=@{linkedService().DatabaseName};ApplicationIntent=ReadOnly",
+                                                                "userName":  "@{linkedService().AccountName}",
+                                                                "password":  {
+                                                                                 "type":  "AzureKeyVaultSecret",
+                                                                                 "store":  {
+                                                                                               "referenceName":  "AzureKeyVault",
+                                                                                               "type":  "LinkedServiceReference"
+                                                                                           },
+                                                                                 "secretName":  {
+                                                                                                    "value":  "@linkedService().SecretName",
+                                                                                                    "type":  "Expression"
+                                                                                                }
+                                                                             }
+                                                            },
+                                         "connectVia":  {
+                                                            "referenceName":  "EDWSCDFIntegrationRuntime",
+                                                            "type":  "IntegrationRuntimeReference"
+                                                        }
+                                     }
+                  }
+              ]
+}
